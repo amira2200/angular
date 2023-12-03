@@ -1,0 +1,50 @@
+<table>
+    <tr>
+        <th>Image</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    <tr *ngFor="let r of listResidences">
+        <td><img src="{{r.image}}" width="75" height="75"></td>
+        <td>{{r.id}}</td>
+        <td>{{r.name}}</td>
+        <td>{{r.address}}</td>
+        <td><button (click)="showApart(r)">Show</button></td>
+        <td><a [routerLink]="['/residence',r.id,r.name]">Vers details</a></td>
+        <td><a [routerLink]="['/residence',r.id]">Show Appartments</a></td>
+
+    </tr>
+</table>
+
+<div [hidden]="hide">
+<div *ngIf="listApartByResidence.length >0 ">
+<table>
+    <tr>
+        <th>appartNum</th>
+        <th>residence</th>
+    </tr>
+    <tr *ngFor="let a of listApartByResidence">
+        <td>{{a.appartNum}}</td>
+        <td>{{a.residence.name}}</td>
+        <td><button (click)="addToFavoris(a)">lIKE</button></td>
+    </tr>
+</table>
+</div>
+<div *ngIf="listApartByResidence.length == 0 ">
+    <p>No Apartment found</p>
+</div>
+</div>
+
+<h1>List favoris</h1>
+<table>
+    <tr>
+        <th>appartNum</th>
+        <th>residence</th>
+    </tr>
+    <tr *ngFor="let a of apartFavoris">
+        <td>{{a.appartNum}}</td>
+        <td>{{a.residence.name}}</td>
+    </tr>
+</table>

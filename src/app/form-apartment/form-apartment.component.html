@@ -1,0 +1,62 @@
+<form [formGroup]="apartForm">
+   
+  ApartmentNumber : <input type="text" formControlName="ApartmentNumber"><br>
+  <div *ngIf="apartForm.get('ApartmentNumber')!.invalid &&  apartForm.get('ApartmentNumber')!.touched">
+    <div *ngIf="apartForm.get('ApartmentNumber')!.errors!['required']">ApartmentNumber is required !</div>
+    <div *ngIf="apartForm.get('ApartmentNumber')!.errors!['pattern']">ApartmentNumber must have Numbers!</div>
+</div>
+
+   
+
+    FloorNumber : <input type="text" formControlName="FloorNumber"><br>
+    <div *ngIf="apartForm.get('FloorNumber')!.invalid &&  apartForm.get('FloorNumber')!.touched">
+      <div *ngIf="apartForm.get('FloorNumber')!.errors!['required']">FloorNumber is required !</div>
+      <div *ngIf="apartForm.get('FloorNumber')!.errors!['pattern']">FloorNumber must have Numbers!</div>
+  </div>
+    
+    
+    Surface : <input type="text" formControlName="Surface"><br>
+    <div *ngIf="apartForm.get('Surface')!.invalid &&  apartForm.get('Surface')!.touched">
+      <div *ngIf="apartForm.get('Surface')!.errors!['required']">Surface is required !</div>
+      </div>
+
+    <div>
+      <label>Terrace:</label>
+      <div *ngFor="let option of terraceOptions">
+        <label>
+          <input type="radio" formControlName="Terrace" [value]="option.value" (change)="onTerraceChange()" />
+          {{ option.label }}
+        </label>
+      </div>
+    </div>
+    SurfaceTerrace : <input type="text" formControlName="SurfaceTerrace"><br>
+    <div *ngIf="apartForm.get('SurfaceTerrace')!.invalid &&  apartForm.get('SurfaceTerrace')!.touched">
+      <div *ngIf="apartForm.get('SurfaceTerrace')!.errors!['required']">SurfaceTerrace  is required !</div>
+      </div>
+
+    <div>
+      <label>Category:</label>
+      <div *ngFor="let option of CategoryOptions">
+        <label>
+          <input type="radio" formControlName="Category" [value]="option.value" />
+          {{ option.label }}
+        </label>
+      </div>
+    </div>
+
+    Description : <input type="text" formControlName="Description"><br>
+<div *ngIf="apartForm.get('Description')!.invalid &&  apartForm.get('Description')!.touched">
+    <div *ngIf="apartForm.get('Description')!.errors!['required']">Description is required !</div>
+    <div *ngIf="apartForm.get('Description')!.errors!['minlength']">Description must have at least 10 characters!</div>
+</div>
+
+    Residence : <input type="text" formControlName="Residence"><br>
+    
+    
+      
+    
+    <td>
+      <button type="submit" [disabled]="apartForm.invalid">Add</button>
+    </td>
+   
+    </form>

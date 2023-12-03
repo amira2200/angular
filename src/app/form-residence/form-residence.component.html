@@ -1,0 +1,30 @@
+<br>
+<input type="text" [formControl]="userName"><br>
+<button (click)="showUserName()">Submit</button>
+Property of userName : {{userName | json }}
+
+Value : {{userName.value}}
+
+<form [formGroup]="formUser">
+FirstName : <input type="text" formControlName="firstName"><br>
+Touched : {{formUser.get('firstName')!.touched}}<br>
+Invalid : {{formUser.get('firstName')!.invalid}}<br>
+
+
+<div *ngIf="formUser.get('firstName')!.invalid && formUser.get('firstName')!.touched">
+    FirstName is required!
+</div><br>
+LastName : <input type="text" formControlName="lastName"><br>
+<div formGroupName="address">
+Street : <input type="text" formControlName="street"><br>
+<div *ngIf="street!.invalid && street!.touched">
+    Street Invalid ! 
+</div>
+City : <input type="text" formControlName="city"><br>
+<div *ngIf="formUser.get('address')!.get('city')!.invalid &&  formUser.get('address')!.get('city')!.touched">
+    <div *ngIf="formUser.get('address')!.get('city')!.errors!['required']">City is required !</div>
+    <div *ngIf="formUser.get('address')!.get('city')!.errors!['minlength']">City must have at least 5 characters!</div>
+</div>
+</div>
+<input type="submit" (click)="showFormUser()" [disabled]="formUser.invalid">
+</form>
